@@ -1,0 +1,2 @@
+C:/Projects/grad/LawMateee/lawmateee/android/app/.cxx/Debug/6w512x81/x86/CMakeFiles/edit_cache.dir
+C:/Projects/grad/LawMateee/lawmateee/android/app/.cxx/Debug/6w512x81/x86/CMakeFiles/rebuild_cache.dir

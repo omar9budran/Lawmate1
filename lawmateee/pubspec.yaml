@@ -1,0 +1,33 @@
+# pubspec.yaml
+name: my_app
+description: A sample Flutter app with sign-in and landing screens
+
+# ...
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  firebase_core: ^3.11.0
+  flutter:
+    sdk: flutter
+
+  get: ^4.6.5
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Enable generation of localized Strings from arb files.
+  generate: true
+
+  assets:
+    # Add assets from the images directory to the application.
+    - assets/images/handshake.jpeg
+    
