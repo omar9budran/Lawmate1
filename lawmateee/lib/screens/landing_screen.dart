@@ -13,8 +13,8 @@ class LandingScreen extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             height: double.infinity,
-            child: Image.network(
-              'https://s3-alpha-sig.figma.com/img/ab11/6888/41955312f5ac7f000fd06b28bcb683ea?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=QQgJ-BIxLCi3y24sJ8eVj0ZDuDa8sG1YHJ~WrL5egQ13OpcrUB-PsQB~m1C4PO8icL4g~OVOuwxP1wpMMaG~Rf9T3MzvvtSxAcsERHA1LYeX0hgM6k0OPeR5bRPNkq~PbhRrTVn0yN7jPH-fqIKWm~o7XYQi0J4aW4vt~zp6DnvHktQBlxKmckONh3X2x5vQuVtJxWT8OD0~wkY6fcuTleU1flfNIQX0p9h5BS9pVB2fm9RT5To3LfBMPon-BHa7xGzqUvcq-ipH1VtqQAn7ov82j7K5hfjjmuKcLf3fILrSTfx5YHzle8CTty7rF~20EhsppeOG7UQgTpfUUaeUsA__',
+            child: Image.asset(
+              'assets/handshake.jpeg',
               fit: BoxFit.cover,
             ),
           ),
@@ -43,10 +43,7 @@ class LandingScreen extends StatelessWidget {
 
                   // Sign Up button
                   ElevatedButton(
-                    onPressed: () {
-                      // Navigate to Sign In or Sign Up screen
-                      Navigator.pushNamed(context, '/signin');
-                    },
+                    onPressed: () => Navigator.pushNamed(context, '/role-selection'),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
                       backgroundColor: Colors.white.withAlpha((0.9 * 255).toInt()),
@@ -66,9 +63,8 @@ class LandingScreen extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
-                      backgroundColor: Colors.transparent,
+                      backgroundColor: Colors.brown,
                       foregroundColor: Colors.white,
-                      side: const BorderSide(color: Colors.white),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),

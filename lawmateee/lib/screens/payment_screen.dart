@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'card_details_screen.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -8,121 +9,110 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Payment'),
+        title: const Text('Payment Methods'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              // Handle adding new payment method
+            },
+          ),
+        ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Payment Details',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Card(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: Text('Consultation Fee'),
-                      trailing: Text('150.00'),
-                    ),
-                    ListTile(
-                      title: Text('Service Fee'),
-                      trailing: Text('10.00'),
-                    ),
-                    Divider(),
-                    ListTile(
-                      title: Text(
-                        'Total',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      trailing: Text(
-                        '160.00',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 32),
-            const Text(
-              'Payment Method',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Card(
-              child: Column(
-                children: [
-                  RadioListTile(
-                    value: 'credit_card',
-                    groupValue: 'credit_card',
-                    onChanged: (value) {},
-                    title: const Row(
-                      children: [
-                        Icon(Icons.credit_card),
-                        SizedBox(width: 12),
-                        Text('Credit Card'),
-                      ],
-                    ),
+            _buildPaymentMethodCard(
+              context,
+              'Visa',
+              'assets/visa_logo.png',
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CardDetailsScreen(paymentMethod: 'Visa'),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Card Number',
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                        SizedBox(height: 16),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  labelText: 'Expiry Date',
-                                ),
-                                keyboardType: TextInputType.datetime,
-                              ),
-                            ),
-                            SizedBox(width: 16),
-                            Expanded(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  labelText: 'CVV',
-                                ),
-                                keyboardType: TextInputType.number,
-                                obscureText: true,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 16),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {
-                Get.toNamed('/payment-success');
+                );
               },
-              child: const Text('Pay Now'),
+            ),
+            const SizedBox(height: 12),
+            _buildPaymentMethodCard(
+              context,
+              'MasterCard',
+              'assets/mastercard_logo.png',
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CardDetailsScreen(paymentMethod: 'MasterCard'),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            _buildPaymentMethodCard(
+              context,
+              'American Express',
+              'assets/amex_logo.png',
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CardDetailsScreen(paymentMethod: 'American Express'),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            _buildPaymentMethodCard(
+              context,
+              'PayPal',
+              'assets/paypal_logo.png',
+              () {
+                // Handle PayPal selection
+              },
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPaymentMethodCard(BuildContext context, String name, String logoPath, VoidCallback onTap) {
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: Colors.grey.shade200),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Image.asset(
+                logoPath,
+                width: 40,
+                height: 40,
+              ),
+              const SizedBox(width: 16),
+              Text(
+                name,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.chevron_right,
+                color: Colors.grey,
+              ),
+            ],
+          ),
         ),
       ),
     );
